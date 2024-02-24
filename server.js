@@ -1,12 +1,8 @@
-import { app } from "./src/app.js";
-const PORT = 8888;
-const server = app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
-
-// close server
-process.on("SIGINT", () => {
-  server.close(() => {
-    console.log("Server closed");
-  });
+import app from "./src/app.js";
+import config from "./src/configs/config.mongodb.js";
+const {
+  app: { port },
+} = config;
+const server = app.listen(port, () => {
+  console.log("Server is running on port: " + port);
 });
