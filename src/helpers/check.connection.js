@@ -14,7 +14,7 @@ export const checkOverload = () => {
   const realConnections = mongoose.connections.length;
   const maxConnections = cores * 100;
   setInterval(() => {
-    console.log(`ram usage: ${(ramUsage / 1024 / 1024).toFixed(2)} mb`);
+    // console.log(`ram usage: ${(ramUsage / 1024 / 1024).toFixed(2)} mb`);
     if (realConnections > maxConnections) {
       console.log(`real connections: ${realConnections}`);
       console.log(`max connections: ${maxConnections}`);

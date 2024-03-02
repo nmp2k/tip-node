@@ -1,0 +1,10 @@
+@url=http://localhost:8888/v1/api
+# signup
+POST {{url}}/shop/signup
+Content-Type: application/json
+
+{
+    "name" : "atShop",
+    "email": "at@gmail.com",
+    "password":"abc123"
+}

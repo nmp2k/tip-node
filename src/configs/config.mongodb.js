@@ -1,5 +1,6 @@
 const dev = {
   app: {
+    host: process.env.DEV_APP_HOST || "localhost",
     port: process.env.DEV_APP_PORT || 8888,
   },
   db: {
@@ -10,6 +11,7 @@ const dev = {
 };
 const pro = {
   app: {
+    host: process.env.PRO_APP_HOST,
     port: process.env.PRO_APP_PORT || 8888,
   },
   db: {

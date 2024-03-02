@@ -3,7 +3,7 @@ import config from "../configs/config.mongodb.js";
 const {
   db: { host, port, name },
 } = config;
-const DB_URL = `mongodb://${host}:${port}/${name}/`;
+const DB_URL = `mongodb://${host}:${port}/${name}`;
 const MAX_POOL_SIZE = 100;
 
 class Database {
