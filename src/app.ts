@@ -1,5 +1,5 @@
 import "dotenv/config";
-import express from "express";
+import express, { Express } from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
@@ -7,7 +7,7 @@ import initDb from "./dbs/init.mongodb.js";
 import { countConnections, checkOverload } from "./helpers/check.connection.js";
 import router from "./routers/index.js";
 
-const app = express();
+const app: Express = express();
 
 //init middleware
 app.use(morgan("tiny"));
