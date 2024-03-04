@@ -1,7 +1,7 @@
 import { createHash, generateKeyPairSync, createPublicKey } from "crypto";
 import shopModel from "../models/shop.model.js";
 import keyTokenService from "./keyToken.service.js";
-import authUtils from "../auth/authUtils.js";
+import {createTokensPair} from "../auth/authUtils.js";
 import { getInfo } from "../utils/index.js";
 const hash = createHash("sha256");
 const accessService = {};
@@ -52,7 +52,7 @@ accessService.signup = async ({ name, email, password }) => {
           message: "publicKeyString not created",
         };
       }
-      const tokens = await authUtils.createTokensPair(
+      const tokens = await createTokensPair(
         { userId: newShop._id, email },
         publicKeyString,
         privateKey

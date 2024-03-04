@@ -1,6 +1,6 @@
 import accessService from "../services/access.service.js";
-const access = {};
-access.signup = async (req, res, next) => {
+const accessController: AccessController;
+accessController.signup = async (req, res, next) => {
   try {
     console.log(`[p]::signup::`, req.body);
     //code 201 => created
@@ -10,4 +10,4 @@ access.signup = async (req, res, next) => {
     next(e);
   }
 };
-export default access;
+export default accessController;

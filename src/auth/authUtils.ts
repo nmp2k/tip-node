@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
-const authUtils = {};
-authUtils.createTokensPair = async (payload, publicKey, privateKey) => {
+export const createTokensPair = async (payload, publicKey, privateKey) => {
   try {
     const accessToken = await jwt.sign(payload, privateKey, {
       algorithm: "RS256",
@@ -25,4 +24,3 @@ authUtils.createTokensPair = async (payload, publicKey, privateKey) => {
     return e;
   }
 };
-export default authUtils;
