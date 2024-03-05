@@ -1,17 +1,16 @@
 import { createHash, generateKeyPairSync, createPublicKey } from "crypto";
-import shopModel from "../models/shop.model.js";
-import keyTokenService from "./keyToken.service.js";
-import {createTokensPair} from "../auth/authUtils.js";
-import { getInfo } from "../utils/index.js";
+import shopModel from "~/models/shop.model.js";
+import  * as keyTokenService from "./keyToken.service.js";
+import {createTokensPair} from "~/auth/authUtils.js";
+import { getInfo } from "~/utils/index.js";
 const hash = createHash("sha256");
-const accessService = {};
 const shopRoles = {
   SHOP: 1,
   ADMIN: 2,
   WRITER: 3,
   EDITOR: 4,
 };
-accessService.signup = async ({ name, email, password }) => {
+export const signup = async ({ name, email, password }) => {
   try {
     // check email exists
     //learn return js object not mongoose object, faster for using
@@ -77,4 +76,3 @@ accessService.signup = async ({ name, email, password }) => {
     };
   }
 };
-export default accessService;

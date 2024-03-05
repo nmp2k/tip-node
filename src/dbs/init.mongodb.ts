@@ -7,6 +7,7 @@ const DB_URL = `mongodb://${host}:${port}/${name}`;
 const MAX_POOL_SIZE = 100;
 
 class Database {
+  static instance: Database | undefined;
   constructor() {
     this.connect();
   }

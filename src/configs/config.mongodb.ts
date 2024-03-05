@@ -22,4 +22,4 @@ const pro = {
 };
 const config = { dev, pro };
 const node_env = process.env.NODE_ENV || "dev";
-export default config[node_env];
+export  default config[node_env];

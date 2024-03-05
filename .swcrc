@@ -1,0 +1,21 @@
+{
+    "exclude": ["\/?types\/?"],
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "target": "es2020",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "baseUrl": "."
+  },
+  "module": {
+    "type": "es6",
+    "strictMode": true,
+    "resolveFully": true
+  }
+}

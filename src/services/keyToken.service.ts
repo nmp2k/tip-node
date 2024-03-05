@@ -1,6 +1,5 @@
 import keyTokenModel from "../models/keyToken.model.js";
-const keyTokenService = {};
-keyTokenService.createToken = async ({ userId, publicKey }) => {
+export const createToken = async ({ userId, publicKey }) => {
   try {
     const tokens = await keyTokenModel.create({
       user: userId,
@@ -11,4 +10,3 @@ keyTokenService.createToken = async ({ userId, publicKey }) => {
     return e;
   }
 };
-export default keyTokenService;

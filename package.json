@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
   "scripts": {
-    "tsc": "tsc"
+    "dev": "concurrently \"pnpm watch-compile\" \"pnpm watch-dev\"",
+    "watch-compile": "swc src -w -d dist --config-file ./.swcrc",
+    "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/src/server.js",
+    "build": "swc src -d dist --config-file ./.swcrc",
+    "start": "node dist/src/server.js",
+    "clean": "rm -rf dist"
   },
   "keywords": [],
   "author": "",
@@ -21,12 +25,15 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@swc/cli": "^0.3.10",
+    "@swc/core": "^1.4.2",
     "@types/compression": "^1.7.5",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/lodash": "^4.14.202",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.11.24",
-    "typescript": "^5.3.3"
+    "chokidar": "^3.6.0",
+    "concurrently": "^8.2.2"
   }
 }
