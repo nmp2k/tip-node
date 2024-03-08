@@ -1,8 +1,9 @@
 import { model, Schema } from "mongoose";
+import {ShopDocument} from "ShopModel";
 // Declare the Schema of the Mongo model
 const COLLECTION_NAME = "Shops";
 const DOCUMENT_NAME = "Shop";
-const shopSchema = new Schema(
+const shopSchema = new Schema<ShopDocument>(
   {
     name: {
       type: String,
@@ -34,7 +35,7 @@ const shopSchema = new Schema(
     roles: {
       type: Array,
       default: [],
-    },
+    } as unknown as Array<string>,
   },
   {
     timestamps: true,

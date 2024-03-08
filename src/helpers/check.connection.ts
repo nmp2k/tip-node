@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import os from "os";
-import process from "process";
+import proc from "process";
 // times for check overload
 const SECONDS = 5000;
 // count connections
@@ -10,7 +10,7 @@ export const countConnections = () => {
 // check overload
 export const checkOverload = () => {
   const cores = os.cpus().length;
-  const ramUsage = process.memoryUsage().rss;
+  const ramUsage = proc.memoryUsage().rss;
   const realConnections = mongoose.connections.length;
   const maxConnections = cores * 100;
   setInterval(() => {

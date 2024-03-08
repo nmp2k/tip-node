@@ -1,4 +1,4 @@
-import * as accessService from "../services/access.service.js";
+import * as accessService from "../services/access.service";
 const accessController = {};
 export const signup = async (req, res, next) => {
   try {
