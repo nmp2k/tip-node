@@ -1,9 +1,14 @@
 import keyTokenModel from "../models/keyToken.model";
-import { Types } from "mongoose";
-export const createToken = async ({ userId, publicKey, refreshToken }) => {
+export const createToken = async ({
+  userId,
+  publicKey,
+  privateKey,
+  refreshToken,
+}) => {
   const filter = { user: userId };
   const update = {
     publicKey,
+    privateKey,
     refreshToken,
     refreshTokensUsed: [],
   };

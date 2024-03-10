@@ -16,7 +16,7 @@ export const apiKey = async (req, res, next) => {
     throw new errorRes("FORBIDDEN", "api key not found");
   }
   req.objKey = objKey;
-  next();
+  return next();
 };
 
 export const permission = (per) => {
@@ -28,7 +28,7 @@ export const permission = (per) => {
     if (!req.objKey.permissions.includes(per)) {
       throw new errorRes("BAD_REQUEST", "permission denied");
     }
-    next();
+    return next();
   };
 };
 

@@ -1,7 +1,7 @@
 import { createHash, generateKeyPairSync } from "node:crypto";
-const hash = createHash("sha256");
 //hash pass with rha256 return hex
 export const hashPass = (input: string) => {
+  const hash = createHash("sha256");
   return hash.update(input).digest("hex");
 };
 // create rsaPairs
