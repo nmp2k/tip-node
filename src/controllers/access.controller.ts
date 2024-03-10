@@ -19,3 +19,13 @@ export const logout = async (req, res, next) => {
     metadata: await accessService.logout({ tokenId: req.sKey }),
   }).send(res);
 };
+
+export const handleXrfToken = async (req, res, next) => {
+  new successRes({
+    type: "OK",
+    metadata: await accessService.handleXrfToken({
+      keyStore: req.keyStore,
+      clientInfo: req.clientInfo,
+    }),
+  }).send(res);
+};

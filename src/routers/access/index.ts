@@ -7,4 +7,8 @@ router.post("/shop/signup", asyncErrorHandler(accessController.signup));
 router.post("/shop/login", asyncErrorHandler(accessController.login));
 router.use(authentication);
 router.post("/shop/logout", asyncErrorHandler(accessController.logout));
+router.post(
+  "/shop/refreshToken",
+  asyncErrorHandler(accessController.handleXrfToken)
+);
 export default router;

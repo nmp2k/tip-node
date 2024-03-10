@@ -5,6 +5,7 @@ import { getInfo } from "~/utils";
 import errorRes from "~/core/error.response";
 import { findByEmail } from "./shop.service";
 import { createRsaPairs, hashPass } from "~/helpers/encode";
+import keyTokenModel from "~/models/keyToken.model";
 // type import
 const shopRoles = {
   SHOP: 1,
@@ -14,6 +15,8 @@ const shopRoles = {
 };
 //shop login
 export const login = async ({ email, password, refreshToken = null }) => {
+  // hash function mutate origin,
+  //  assign for prevent deep digest caching header
   const foundShop = await findByEmail({ email });
   if (!foundShop) {
     throw new errorRes("BAD_REQUEST", "email not found");
@@ -32,6 +35,7 @@ export const login = async ({ email, password, refreshToken = null }) => {
   const keyToken = await keyTokenService.createToken({
     userId: foundShop._id,
     publicKey,
+    privateKey,
     refreshToken: tokens.refreshToken,
   });
   return {
@@ -69,6 +73,7 @@ export const signup = async ({ name, email, password }) => {
   const keyToken = await keyTokenService.createToken({
     userId: newShop._id,
     publicKey,
+    privateKey,
     refreshToken: tokens.refreshToken,
   });
   if (!keyToken) {
@@ -84,4 +89,27 @@ export const signup = async ({ name, email, password }) => {
 export const logout = async ({ tokenId }) => {
   const removedKey = await keyTokenService.removeTokenId(tokenId);
   return removedKey;
+};
+export const handleXrfToken = async ({ keyStore, clientInfo }) => {
+  const newTokens = await createTokensPair(
+    { userId: clientInfo.userId, email: clientInfo.email },
+    keyStore.publicKey,
+    keyStore.privateKey
+  );
+  const filter = { _id: keyStore._id };
+  const update = {
+    refreshToken: newTokens.refreshToken,
+    refreshTokensUsed: [...keyStore.refreshTokensUsed, keyStore.refreshToken],
+  };
+  const options = {
+    upsert: false,
+    new: true,
+  };
+  const tokens = await keyTokenModel
+    .findOneAndUpdate(filter, update, options)
+    .lean();
+  return {
+    authorization: tokens.refreshToken,
+    rfToken: newTokens.refreshToken,
+  };
 };
