@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import {ShopDocument} from "ShopModel";
+import { ShopDocument } from "mShopModel";
 // Declare the Schema of the Mongo model
 const COLLECTION_NAME = "Shops";
 const DOCUMENT_NAME = "Shop";

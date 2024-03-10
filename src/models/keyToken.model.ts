@@ -13,6 +13,9 @@ const keyTokenSchema = new Schema(
       require: true,
     },
     refreshToken: {
+      type: String,
+    },
+    refreshTokensUsed: {
       type: Array,
       default: [],
     },
