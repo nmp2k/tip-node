@@ -1,5 +1,5 @@
 import "dotenv/config";
-import initDb from "./dbs/init.mongodb.js";
+import initDb from "./dbs/init.mongodb";
 import { countConnections, checkOverload } from "./helpers/check.connection";
 import router from "./routers";
 import express from "express";
@@ -20,6 +20,13 @@ countConnections();
 checkOverload();
 //init routers
 app.use("", router);
-//handle error
-
+// elegant catching error through response
+app.use((err, req, res, next) => {
+  const statusCode = Number(err.status) || 500;
+  return res.status(statusCode).json({
+    status: "error",
+    code: statusCode,
+    message: err.message || "Internal Server Error",
+  });
+});
 export default app;

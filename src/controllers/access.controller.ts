@@ -1,12 +1,21 @@
 import * as accessService from "../services/access.service";
-const accessController = {};
+import successRes from "~/core/success.response";
 export const signup = async (req, res, next) => {
-  try {
-    console.log(`[p]::signup::`, req.body);
-    //code 201 => created
-    return res.status(201).json(await accessService.signup(req.body));
-  } catch (e) {
-    // throw to middleware
-    next(e);
-  }
+  new successRes({
+    type: "CREATED",
+    metadata: await accessService.signup(req.body),
+  }).send(res, { name: "header" });
+};
+export const login = async (req, res, next) => {
+  new successRes({
+    type: "OK",
+    metadata: await accessService.login(req.body),
+  }).send(res);
+};
+
+export const logout = async (req, res, next) => {
+  new successRes({
+    type: "OK",
+    metadata: await accessService.logout({ tokenId: req.sKey }),
+  }).send(res);
 };

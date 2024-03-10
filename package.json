@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "concurrently \"pnpm watch-compile\" \"pnpm watch-dev\"",
-    "watch-compile": "swc src -w -d dist --config-file ./.swcrc",
-    "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/src/server.js",
-    "build": "swc src -d dist --config-file ./.swcrc",
+    "dev": "concurrently pnpm:watch-*",
+    "watch-compile": "swc server.ts src -w -d dist --config-file ./.swcrc -q",
+    "watch-dev": "nodemon --watch \"dist/**/*\" -e js --delay 1000ms ./dist/server.js",
+    "build": "swc src server.ts -d dist --config-file ./.swcrc -q",
     "start": "node dist/src/server.js",
     "clean": "rm -rf dist"
   },
