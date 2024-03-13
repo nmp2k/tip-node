@@ -4,6 +4,6 @@ declare module "mModel" {
     publicKey: string;
     privateKey: string;
     refreshToken: string;
-    refreshTokenUsed: string[];
+    refreshTokensUsed: string[];
   }
 }

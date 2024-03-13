@@ -65,7 +65,7 @@ export const signup = async ({ name, email, password }) => {
   const { privateKey, publicKey } = createRsaPairs();
   // create tokens pairs
   const tokens = await createTokensPair(
-    { userId: newShop._id, email },
+    { userId: newShop._id, email: newShop.email },
     publicKey,
     privateKey
   );

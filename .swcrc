@@ -1,5 +1,5 @@
 {
-  "exclude": ["\/?types\/?",".*\\.js$", ".*\\.map$", ".*\\.d\\.ts$"],
+  "exclude": ["\/types\/",".*\\.js$", ".*\\.map$", ".*\\.d\\.ts$"],
   "jsc": {
     "parser": {
       "syntax": "typescript",
@@ -9,7 +9,7 @@
     },
     "target": "es2020",
     "paths": {
-      "~/*": ["src/*"],
+      "~/*": ["src/*"]
     },
     "baseUrl": "."
   },

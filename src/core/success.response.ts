@@ -6,7 +6,6 @@ const reasonPhrase = {
   OK: "OK",
   CREATED: "Created",
 };
-type codeName = "OK" | "CREATED";
 
 class successRes {
   public status: number;
@@ -19,7 +18,7 @@ class successRes {
     metadata = {},
     options = {},
   }: {
-    type: codeName;
+    type: keyof typeof reasonPhrase;
     message?: string;
     metadata?: any;
     options?: any;

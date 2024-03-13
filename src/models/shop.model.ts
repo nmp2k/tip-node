@@ -1,9 +1,9 @@
 import { model, Schema } from "mongoose";
-import { ShopDocument } from "mShopModel";
+import { IShopModel } from "mModel";
 // Declare the Schema of the Mongo model
 const COLLECTION_NAME = "Shops";
 const DOCUMENT_NAME = "Shop";
-const shopSchema = new Schema<ShopDocument>(
+const shopSchema = new Schema(
   {
     name: {
       type: String,
@@ -44,4 +44,4 @@ const shopSchema = new Schema<ShopDocument>(
 );
 
 //Export the model
-export default model(DOCUMENT_NAME, shopSchema);
+export default model<IShopModel>(DOCUMENT_NAME, shopSchema);

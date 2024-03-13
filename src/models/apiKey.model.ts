@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import { IApiKey } from "mModel";
 const DOCUMENT_NAME = "ApiKey";
 const COLLECTION_NAME = "ApiKeys";
 
@@ -29,4 +30,4 @@ const ApiKeySchema = new Schema(
   }
 );
 
-export default model(DOCUMENT_NAME, ApiKeySchema);
+export default model<IApiKey>(DOCUMENT_NAME, ApiKeySchema);
