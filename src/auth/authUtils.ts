@@ -1,4 +1,4 @@
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import errorRes from "~/core/error.response";
 import { asyncErrorHandler } from "~/utils/asyncError.handler";
 import { findByUserId } from "~/services/keyToken.service";
@@ -79,6 +79,7 @@ export const authentication = asyncErrorHandler(async (req, res, next) => {
   try {
     const decode = jwt.verify(accessToken, keystore.publicKey);
     req.sKey = keystore._id;
+    req.clientInfo = decode;
     return next();
   } catch (e) {
     throw e;

@@ -7,7 +7,7 @@
     "watch-compile": "swc server.ts src -w -d dist --config-file ./.swcrc -q",
     "watch-dev": "nodemon --watch \"dist/**/*\" -e js --delay 1000ms ./dist/server.js",
     "build": "swc src server.ts -d dist --config-file ./.swcrc -q",
-    "start": "node dist/src/server.js",
+    "start": "node dist/server.js",
     "clean": "rm -rf dist"
   },
   "keywords": [],
@@ -21,7 +21,8 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mongoose": "^8.2.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "@swc/cli": "^0.3.10",

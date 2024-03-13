@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { IKeyTokenModel } from "mModel";
 const COLLECTION_NAME = "Keys";
 const DOCUMENT_NAME = "Key";
 const keyTokenSchema = new Schema(
@@ -30,4 +31,4 @@ const keyTokenSchema = new Schema(
   }
 );
 
-export default model(DOCUMENT_NAME, keyTokenSchema);
+export default model<IKeyTokenModel>(DOCUMENT_NAME, keyTokenSchema);
