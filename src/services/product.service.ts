@@ -18,6 +18,11 @@ class ProductFactory {
     return await _query.publishStateProduct({ shopId, productId, publish });
   }
   // query
+
+  //user query
+  static async searchProductByUser({ keySearch }) {
+    return await _query.searchProductByUser({ keySearch });
+  }
   static async findAllProductForShop({
     shopId,
     skip = 0,

@@ -28,7 +28,17 @@ export const publishStateProduct = async ({ shopId, productId, publish }) => {
   return modifiedCount;
 };
 //query
-
+//user query
+export const searchProductByUser = async ({ keySearch }) => {
+  const regexString = `/${keySearch}/i`;
+  return productModel
+    .find({
+      $text: { $search: regexString },
+    })
+    .sort({ score: { $meta: "textScore" } })
+    .lean()
+    .exec();
+};
 export const findAllProductForShop = async ({ query, skip, limit }) => {
   return productModel
     .find(query)

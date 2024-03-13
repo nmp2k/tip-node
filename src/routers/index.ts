@@ -9,8 +9,8 @@ const router = Router();
 router.use(asyncErrorHandler(apiKey));
 //check permission
 router.use(permission("0000"));
-router.use("/v1/api", shopAccess);
 router.use("/v1/api/product", product);
+router.use("/v1/api", shopAccess);
 router.get("/", (req, res, next) => {
   return res.status(200).json({ msg: "hello world" });
 });
