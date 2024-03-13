@@ -73,6 +73,10 @@ const ProductSchema = new Schema(
     timestamps: true,
   }
 );
+ProductSchema.index({
+  product_name: "text",
+  product_description: "text",
+});
 ProductSchema.pre("save", function (next) {
   this.product_slug = slug(this.product_name);
   return next();

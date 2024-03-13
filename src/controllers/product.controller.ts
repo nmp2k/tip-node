@@ -33,6 +33,15 @@ export const unPublishOne = async (req, res, next) => {
   }).send(res);
 };
 //query
+export const searchProductByUser = async (req, res, next) => {
+  new successRes({
+    type: "OK",
+    message: `successfully searching`,
+    metadata: await productService.searchProductByUser({
+      keySearch: req.params.keySearch,
+    }),
+  }).send(res);
+};
 export const getAllDraftProduct = async (req, res, next) => {
   new successRes({
     type: "OK",

@@ -3,6 +3,11 @@ import * as productController from "~/controllers/product.controller";
 import { asyncErrorHandler } from "~/utils/asyncError.handler";
 import { authentication } from "~/auth/authUtils";
 const router = Router();
+//user query
+router.get(
+  "/search/:keySearch",
+  asyncErrorHandler(productController.searchProductByUser)
+);
 router.use(authentication);
 router.post("/create", asyncErrorHandler(productController.createProduct));
 //update
