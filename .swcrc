@@ -4,8 +4,9 @@
     "parser": {
       "syntax": "typescript",
       "tsx": false,
-      "decorators": true,
-      "dynamicImport": true
+      "dynamicImport": true,
+      "functionBind": false,
+      "exportDefaultFrom": false
     },
     "target": "es2020",
     "paths": {

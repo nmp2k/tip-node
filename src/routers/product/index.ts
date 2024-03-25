@@ -8,11 +8,20 @@ router.get(
   "/search/:keySearch",
   asyncErrorHandler(productController.searchProductByUser)
 );
+router.get("/:productId", asyncErrorHandler(productController.findProductById));
+router.get("/", asyncErrorHandler(productController.findAllProductForUser));
+//authentication
 router.use(authentication);
+
 router.post("/create", asyncErrorHandler(productController.createProduct));
 //update
-router.put("/publish/:id", asyncErrorHandler(productController.publishOne));
-router.put("/unpublish/:id", asyncErrorHandler(productController.unPublishOne));
+router.post("/publish/:id", asyncErrorHandler(productController.publishOne));
+router.post(
+  "/unpublish/:id",
+  asyncErrorHandler(productController.unPublishOne)
+);
+//partial update
+router.patch("/update/:id", asyncErrorHandler(productController.partialUpdate));
 //query
 router.get(
   "/draft/all",
@@ -22,4 +31,5 @@ router.get(
   "/published/all",
   asyncErrorHandler(productController.getAllPublishProduct)
 );
+
 export default router;

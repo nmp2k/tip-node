@@ -13,7 +13,7 @@ class successRes {
   public metadata: any;
   public options: any;
   constructor({
-    type,
+    type = "OK",
     message = reasonPhrase[type],
     metadata = {},
     options = {},

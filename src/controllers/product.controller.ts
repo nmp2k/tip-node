@@ -1,4 +1,4 @@
-import productService from "../services/product.service";
+import * as productService from "../services/product.service";
 import successRes from "~/core/success.response";
 export const createProduct = async (req, res, next) => {
   new successRes({
@@ -32,6 +32,19 @@ export const unPublishOne = async (req, res, next) => {
     }),
   }).send(res);
 };
+// partial update
+export const partialUpdate = async (req, res, next) => {
+  new successRes({
+    type: "OK",
+    message: `successfully partial update product `,
+    // type checking not working with spread operator
+    metadata: await productService.partialUpdate({
+      ...req.body,
+      _id: req.params.id,
+      product_shop: req.clientInfo.userId,
+    }),
+  }).send(res);
+};
 //query
 export const searchProductByUser = async (req, res, next) => {
   new successRes({
@@ -39,6 +52,26 @@ export const searchProductByUser = async (req, res, next) => {
     message: `successfully searching`,
     metadata: await productService.searchProductByUser({
       keySearch: req.params.keySearch,
+    }),
+  }).send(res);
+};
+export const findProductById = async (req, res, next) => {
+  new successRes({
+    type: "OK",
+    message: `get product successfully`,
+    metadata: await productService.findProductById({
+      productId: req.params.productId,
+      ...req.body,
+    }),
+  }).send(res);
+};
+export const findAllProductForUser = async (req, res, next) => {
+  new successRes({
+    type: "OK",
+    message: `get list product successfully`,
+    metadata: await productService.findAllProductForUser({
+      page: req.params.page,
+      ...req.body,
     }),
   }).send(res);
 };

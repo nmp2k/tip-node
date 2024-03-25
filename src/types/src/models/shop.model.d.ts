@@ -1,5 +1,6 @@
 declare module "mModel" {
-  export interface IShopModel {
+  import { Document } from "mongoose";
+  export interface IShopModel extends Document {
     name: string;
     verify: boolean;
     email: string;

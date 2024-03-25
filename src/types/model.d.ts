@@ -1,5 +1,6 @@
 declare module "mModel" {
   import { productType } from "~/models/product_types";
+  import { Document } from "mongoose";
   // ApiKey model document
   export interface IApiKey {
     key: string;
@@ -8,14 +9,14 @@ declare module "mModel" {
   }
   type proType = keyof typeof productType;
 
-  export interface IProductModel {
+  export interface IProductModel extends Document {
     product_name: string;
     product_thumb: string;
     product_description?: string;
     product_price: number;
     product_quantity: number;
     product_type: proType;
-    product_shop: string; // Replace with actual type for ObjectId
+    product_shop: string;
     product_attributes: any;
     product_slug: string;
     product_ratingAverage: number;

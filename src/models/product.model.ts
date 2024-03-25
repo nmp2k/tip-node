@@ -76,6 +76,7 @@ const ProductSchema = new Schema(
 ProductSchema.index({
   product_name: "text",
   product_description: "text",
+  isPublish: 1,
 });
 ProductSchema.pre("save", function (next) {
   this.product_slug = slug(this.product_name);
