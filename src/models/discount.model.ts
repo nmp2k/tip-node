@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { IDiscountModel } from "mModel";
-const DOCUMENT_NAME = "discount";
+const DOCUMENT_NAME = "Discount";
 const COLLECTION_NAME = "Discounts";
 export const DISCOUNT_TYPES = ["fixed_amount", "percentage"] as const;
 const _schema = new Schema(
@@ -43,7 +43,7 @@ const _schema = new Schema(
       required: true,
     },
     discount_users_used: {
-      type: Array,
+      type: Array, // [{id, count}]
       default: [],
     },
     discount_max_uses_per_user: {

@@ -10,7 +10,7 @@ declare module "mModel" {
     discount_end_day: Date;
     discount_max_uses: number;
     discount_uses_count: number;
-    discount_users_used: string[];
+    discount_users_used: Array<{ id: string; count: number }>;
     discount_max_uses_per_user: number;
     discount_min_order_value: number;
     discount_shop_id: string;

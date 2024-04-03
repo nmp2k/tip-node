@@ -22,7 +22,7 @@ router.post(
 );
 //partial update
 router.patch("/update/:id", asyncErrorHandler(productController.partialUpdate));
-//query
+//query obey validation
 router.get(
   "/draft/all",
   asyncErrorHandler(productController.getAllDraftProduct)

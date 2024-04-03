@@ -1,8 +1,13 @@
 import shopModel from "~/models/shop.model";
+import projectionTransform from "~/utils/projection.transform";
 
 export const findByEmail = async ({
   email,
-  select = { email: 1, name: 1, password: 1, status: 1, roles: 1 },
+  select = ["email", "name", "password", "status", "roles"],
+  unselect = [],
 }) => {
-  return await shopModel.findOne({ email }).select(select).lean();
+  const _query = { email };
+  const _projection = projectionTransform({ select, unselect });
+  const _options = { lean: true };
+  return await shopModel.findOne(_query, _projection, _options).exec();
 };

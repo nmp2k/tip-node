@@ -7,6 +7,8 @@ const dev = {
     host: process.env.DEV_DB_HOST || "127.0.0.1",
     port: process.env.DEV_DB_PORT || 27017,
     name: process.env.DEV_DB_NAME || "shopDev",
+    user: process.env.DEV_DB_USER,
+    pass: process.env.DEV_DB_PASS,
   },
 };
 const pro = {
@@ -22,4 +24,4 @@ const pro = {
 };
 const config = { dev, pro };
 const node_env = process.env.NODE_ENV || "dev";
-export  default config[node_env];
+export default config[node_env];

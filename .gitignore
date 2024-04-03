@@ -3,3 +3,5 @@ pnpm-lock.yaml
 .env
 dist
 run.http
+.docker/mongodb/data
+.docker/redis/data

@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 import config from "../configs/config.mongodb";
 const {
-  db: { host, port, name },
+  db: { host, port, name, user, pass },
 } = config;
-const DB_URL = `mongodb://${host}:${port}/${name}`;
+const auth = "?authSource=admin";
+const DB_URL = `mongodb://${user}:${pass}@${host}:${port}/${name}${auth}`;
+console.log("db url", DB_URL);
 const MAX_POOL_SIZE = 100;
 
 class Database {

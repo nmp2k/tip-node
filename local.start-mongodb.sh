@@ -1,0 +1,1 @@
+mongosh --host localhost:113 -u sa -p admin123 --authenticationDatabase admin
