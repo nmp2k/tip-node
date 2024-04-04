@@ -23,18 +23,12 @@ const _schema = new Schema(
       default: [],
     },
     /**
-     * {
-     *     productId,
-     *     shopId,
-     *     quantity,
-     *     name,
-     *     price
-     * }
+     {
+          productId,
+          shopId,
+          quantity,
+      }
      */
-    cart_count_product: {
-      type: Number,
-      default: 0,
-    },
     cart_user_id: {
       type: String,
       require: true,

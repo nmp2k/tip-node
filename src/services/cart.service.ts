@@ -1,6 +1,7 @@
 import cartModel from "~/models/cart.model";
 import { findProductById } from "~/models/repositories/product.repo";
 import errorRes from "~/core/error.response";
+import { ICartModel } from "mModel";
 
 /**
  * - Add product to cart - user
@@ -11,22 +12,24 @@ import errorRes from "~/core/error.response";
  * - delete cart item - user
  */
 
-export const createUserCart = async ({ userId, product }) => {
+export const createUserCart = async (input: {
+  userId: string;
+  product: ICartModel["cart_products"][number];
+}) => {
   const query = {
-    cart_user_id: userId,
+    cart_user_id: input.userId,
     cart_state: "active",
   };
 
   const updateOrInsert = {
       $addToSet: {
-        cart_products: product,
+        cart_products: input.product,
       },
     },
     options = { upsert: true, new: true };
 
   return await cartModel.findOneAndUpdate(query, updateOrInsert, options);
 };
-
 export const updateUserCartQuantity = async ({ userId, product }) => {
   const { productId, quantity } = product;
   const query = {
@@ -95,7 +98,10 @@ export const addToCartV2 = async ({ userId, shop_order_ids = [] }) => {
   }
 
   if (quantity === 0) {
-    // todo deleted
+    return await deleteCartItem({
+      userId,
+      productId,
+    });
   }
 
   return await updateUserCartQuantity({

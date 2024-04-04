@@ -1,5 +1,6 @@
 import "dotenv/config";
-import initDb from "./dbs/init.mongodb";
+import initDb from "./configs/config.mongodb";
+import { initRedis } from "./configs/config.redis";
 import { countConnections, checkOverload } from "./helpers/check.connection";
 import router from "./routers";
 import express from "express";
@@ -16,6 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //init db
 initDb();
+//init redis
+initRedis();
 countConnections();
 checkOverload();
 //init routers

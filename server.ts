@@ -1,5 +1,5 @@
 import app from "~/app";
-import config from "~/configs/config.mongodb";
+import config from "~/configs/config";
 const {
   app: { host, port },
 } = config;
