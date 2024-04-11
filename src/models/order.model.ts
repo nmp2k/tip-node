@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { IOrderModel } from "mModel";
-const DOCUMENT_NAME = "Cart";
-const COLLECTION_NAME = "Carts";
+const DOCUMENT_NAME = "Order";
+const COLLECTION_NAME = "Orders";
 export const ORDER_STATES = [
   "pending",
   "confirmed",
@@ -24,7 +24,7 @@ const _schema = new Schema(
      * order_checkout : {
      * totalPrice
      * feeShip
-     * totalApplyDiscount}
+     * totalDiscount}
      */
     order_shipping: {
       type: Object,

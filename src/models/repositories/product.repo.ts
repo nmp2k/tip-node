@@ -1,7 +1,9 @@
 import errorRes from "~/core/error.response";
 import { IProductModel } from "mModel";
+import projectionTransform from "~/utils/projection.transform";
 import productModel from "../product.model";
 import * as PT from "../product_types";
+import _ from "lodash";
 //update
 export const publishStateProduct = async ({ shopId, productId, publish }) => {
   const query = {
@@ -46,16 +48,21 @@ export const searchProductByUser = async ({ keySearch }) => {
 export const findProductById = async ({
   productId,
   projection = null,
+  isPublish,
 }: {
   productId: string;
-  projection?: any;
+  projection?: { select?: string[]; unselect?: string[] };
+  isPublish?: boolean;
 }) => {
   const options = {
     populate: [{ path: "product_shop", select: "name" }],
     lean: true,
   };
+  const _projection = projectionTransform(projection);
   try {
-    return await productModel.findById(productId, projection, options).exec();
+    return await productModel
+      .findOne({ _id: productId, isPublish }, _projection, options)
+      .exec();
   } catch (e) {
     throw new errorRes("NOT_FOUND", "can't find product");
   }

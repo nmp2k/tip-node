@@ -1,4 +1,5 @@
 import cartModel from "~/models/cart.model";
+import * as _cartQuery from "~/models/repositories/cart.repo";
 import { findProductById } from "~/models/repositories/product.repo";
 import errorRes from "~/core/error.response";
 import { ICartModel } from "mModel";
@@ -114,16 +115,7 @@ export const addToCartV2 = async ({ userId, shop_order_ids = [] }) => {
 };
 
 export const deleteCartItem = async ({ userId, productId }) => {
-  const query = { cart_user_id: userId, cart_state: "active" };
-  const updateSet = {
-    $pull: {
-      cart_products: {
-        productId,
-      },
-    },
-  };
-
-  return await cartModel.updateOne(query, updateSet);
+  return await _cartQuery.deleteCartItem({ userId, productId });
 };
 
 export const getUserCart = async ({ userId }) => {

@@ -80,7 +80,7 @@ export const getAllProductsWithDiscount = async ({
 export const getAllDiscountsByShop = async ({ shopId, limit, page }) => {
   const _query = {
     discount_shop_id: shopId,
-    isPublish: true,
+    discount_is_active: true,
   };
   const skip = limit * (page - 1);
   return await discountModel.find(_query).skip(skip).limit(limit).lean().exec();

@@ -9,3 +9,14 @@ export const findCartById = async (cartId) => {
     })
     .lean();
 };
+export const deleteCartItem = async ({ userId, productId }) => {
+  const query = { cart_user_id: userId, cart_state: "active" };
+  const updateSet = {
+    $pull: {
+      cart_products: {
+        productId,
+      },
+    },
+  };
+  return await cartModel.updateOne(query, updateSet).lean().exec();
+};

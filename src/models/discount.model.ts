@@ -19,7 +19,7 @@ const _schema = new Schema(
       default: "fixed_amount",
     },
     discount_value: {
-      type: String,
+      type: Number,
       required: true,
     },
     discount_code: {

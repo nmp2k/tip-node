@@ -1,6 +1,7 @@
 import shopAccess from "./access";
 import product from "./product";
 import cart from "./cart";
+import order from "./order";
 import inventory from "./inventory";
 import discount from "./discount";
 import { apiKey, permission } from "~/auth/checkAuth";
@@ -17,6 +18,7 @@ router.use("/v1/api/cart", cart);
 router.use("/v1/api/inventory", inventory);
 router.use("/v1/api/shop", shopAccess);
 router.use("/v1/api/discount", discount);
+router.use("/v1/api/order", order);
 router.get("/", (req, res, next) => {
   return res.status(200).json({ msg: "hello world" });
 });

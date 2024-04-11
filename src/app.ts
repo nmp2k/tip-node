@@ -1,6 +1,6 @@
 import "dotenv/config";
 import initDb from "./configs/config.mongodb";
-import { initRedis } from "./configs/config.redis";
+import initRedis from "./configs/config.redis";
 import { countConnections, checkOverload } from "./helpers/check.connection";
 import router from "./routers";
 import express from "express";
@@ -26,6 +26,7 @@ app.use("", router);
 // elegant catching error through response
 app.use((err, req, res, next) => {
   const statusCode = Number(err.status) || 500;
+  console.log(err.message);
   return res.status(statusCode).json({
     status: "error",
     code: statusCode,

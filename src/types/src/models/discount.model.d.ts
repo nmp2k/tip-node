@@ -3,8 +3,8 @@ declare module "mModel" {
   export interface IDiscountModel extends Document {
     discount_name: string;
     discount_description: string;
-    discount_type: string;
-    discount_value: "fixed_amount" | "percentage";
+    discount_type: "fixed_amount" | "percentage";
+    discount_value: number;
     discount_code: string;
     discount_start_day: Date;
     discount_end_day: Date;

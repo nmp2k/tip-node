@@ -10,7 +10,7 @@ declare module "mModel" {
   type order_checkout = {
     totalPrice: number;
     feeShip: number;
-    totalApplyDiscount: number;
+    totalDiscount: number;
   };
   type order_shipping = {
     detailAddress: string;

@@ -1,4 +1,4 @@
-import { createClient } from "redis";
+import { RedisClientType, createClient } from "redis";
 import config from "./config";
 // const redisStatus = ["connect", "end", "reconnecting", "error"];
 const {
@@ -7,12 +7,11 @@ const {
 const public_url = `redis://${host}:${port}`;
 const reconnect_one_time = 300;
 const reconnect_count = 10;
-let instance;
-
-export const initRedis = async () => {
+let instance: RedisClientType;
+const initRedis = async () => {
   try {
     instance = createClient({
-      url: `redis://${host}:${port}`,
+      url: public_url,
       password: pass,
       socket: socketOptions,
     });
@@ -23,7 +22,7 @@ export const initRedis = async () => {
   }
 };
 
-export const getInstance = () => {
+const getInstance = () => {
   if (!instance) {
     initRedis();
   }
@@ -62,3 +61,4 @@ const handleEventConnect = (connectEntity) => {
     console.log("redis reconnecting at :", _local());
   });
 };
+export default getInstance;
